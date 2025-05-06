@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './home.css';
 
 const Home = () => {
+    const navigate = useNavigate();
     const featuredPhotos = [
         { image: '/gallery/photo1.jpg', alt: 'Featured Scrapbook 1' },
         { image: '/gallery/photo2.jpg', alt: 'Featured Scrapbook 2' },
@@ -49,7 +51,7 @@ const Home = () => {
             <div className="cta-section">
                 <h2>Ready to Start Your Project?</h2>
                 <p>Contact us today to discuss your custom scrapbook design.</p>
-                <button className="cta-button" onClick={() => window.location.href='/contact'}>
+                <button className="cta-button" onClick={() => navigate('/contact')}>
                     Get Started
                 </button>
             </div>

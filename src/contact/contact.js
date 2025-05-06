@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './contact.css'
 import Swal from 'sweetalert2'
 
 const Contact = () => {
+    const formRef = useRef(null);
     const onSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -27,6 +28,7 @@ const Contact = () => {
                 text: "Message sent successfully!",
                 icon: "success"
               });
+            formRef.current.reset();
         }
       };
 
