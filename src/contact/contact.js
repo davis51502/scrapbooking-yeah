@@ -1,24 +1,54 @@
 import React from 'react'
 import './contact.css'
+import Swal from 'sweetalert2'
 
 const Contact = () => {
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+    
+        formData.append("access_key", "8a614c9f-8e4e-43be-ad2a-f4b38f6c140f");
+    
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+    
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: json
+        }).then((res) => res.json());
+    
+        if (res.success) {
+            Swal.fire({
+                title: "Success!",
+                text: "Message sent successfully!",
+                icon: "success"
+              });
+        }
+      };
+
     return (
-        <div className="contact-container">
-            <h1>Contact Us</h1>
-            <p>If you have any questions or would like to get in touch, please fill out the form below:</p>
-            <form className="contact-form">
-                <label htmlFor="name">Name:</label>
-                <input type="text" id="name" name="name" required />
-
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" required />
-
-                <label htmlFor="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-
-                <button type="submit">Submit</button>
+        <section className="contact">
+            <form onSubmit={onSubmit}>
+                <h2>Contact Form</h2>
+                <div className='input-box'>
+                    <label>Full Name</label>
+                    <input type="text" className="field" placeholder='Enter your name'name='name' required />
+                </div>
+                <div className='input-box'>
+                    <label>Email Address</label>
+                    <input type="email" className="field" placeholder='Enter your email' name='email' required />
+                </div>
+                <div className='input-box'>
+                    <label>Your Message</label>
+                    <textarea name="message" id=" " className="field mess" placeholder='Type your message here' required></textarea>
+                </div>
+                <button type='submit'>Send Message</button>
             </form>
-        </div>
+        </section>
     );
 };
 

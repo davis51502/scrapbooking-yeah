@@ -1,5 +1,48 @@
 .services {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+  background-color: white;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.documents-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.document-card {
+  background: rgba(154, 164, 154, 0.1);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.document-card:hover {
+  transform: translateY(-5px);
+}
+
+.download-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: rgba(154, 164, 154, 0.9);
+  color: #e6d5b8;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.download-button:hover {
+  background-color: rgba(154, 164, 154, 1);
+  transform: scale(1.05);
+}
