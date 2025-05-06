@@ -1,6 +1,7 @@
 {
   "name": "scrapbooking.yeah",
   "version": "0.1.0",
+  "homepage": "https://davis51502.github.io/scrapbooking-yeah",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
