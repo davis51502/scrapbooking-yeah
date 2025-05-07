@@ -8,7 +8,7 @@ const Contact = () => {
         event.preventDefault();
         const formData = new FormData(event.target);
     
-        formData.append("access_key", "4061777083494561aee64f9a8ffc5084");
+        formData.append("access_key", "40b17770-8349-4561-aee6-4f9a8ffc5084");
     
         const object = Object.fromEntries(formData);
         const json = JSON.stringify(object);
@@ -27,26 +27,49 @@ const Contact = () => {
                 title: "Success!",
                 text: "Message sent successfully!",
                 icon: "success"
-              });
+            });
             formRef.current.reset();
         }
-      };
+    };
 
     return (
         <section className="contact">
-            <form onSubmit={onSubmit}>
+            <form ref={formRef} onSubmit={onSubmit}>
                 <h2>Contact Form</h2>
                 <div className='input-box'>
-                    <label>Full Name</label>
-                    <input type="text" className="field" placeholder='Enter your name'name='name' required />
+                    <label htmlFor="name">Full Name</label>
+                    <input 
+                        type="text" 
+                        className="field" 
+                        placeholder='Enter your name' 
+                        name='name'
+                        id="name"
+                        autoComplete="name"
+                        required 
+                    />
                 </div>
                 <div className='input-box'>
-                    <label>Email Address</label>
-                    <input type="email" className="field" placeholder='Enter your email' name='email' required />
+                    <label htmlFor="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        className="field" 
+                        placeholder='Enter your email' 
+                        name='email'
+                        id="email"
+                        autoComplete="email"
+                        required 
+                    />
                 </div>
                 <div className='input-box'>
-                    <label>Your Message</label>
-                    <textarea name="message" id=" " className="field mess" placeholder='Type your message here' required></textarea>
+                    <label htmlFor="message">Your Message</label>
+                    <textarea 
+                        name="message"
+                        id="message"
+                        className="field mess" 
+                        placeholder='Type your message here'
+                        autoComplete="off"
+                        required
+                    ></textarea>
                 </div>
                 <button type='submit'>Send Message</button>
             </form>
