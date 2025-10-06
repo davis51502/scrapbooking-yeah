@@ -15,6 +15,15 @@
     <title>Scrapbook Impressions</title>
   </head>
   <body>
+      <script>
+    (function(){
+      var redirect = sessionStorage.getItem('redirect');
+      if (redirect) {
+        sessionStorage.removeItem('redirect');
+        history.replaceState(null, null, redirect);
+      }
+    })();
+  </script>
     <div id="root"></div>
     <!--This is where React mounts the app, so don't modify it-->
   </body>
