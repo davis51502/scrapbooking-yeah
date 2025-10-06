@@ -1,98 +1,111 @@
 .navbar {
-    background: rgba(147, 177, 146, 1);
-    height: 80px;
+    background: var(--color-primary);
+    height: 72px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 999;
+    box-shadow: var(--shadow-sm);
 }
 
 .navbar-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* left logo, right nav */
     align-items: center;
     width: 100%;
-    padding: 0 50px;
+    padding: 0 24px;
     position: relative;
 }
 
 .menu-icon {
-    position: absolute;
-    left: 50px;
-    font-size: 1.8rem;
-    color: #e6d5b8;
+    display: none; /* shown on small screens only */
+    font-size: 1.25rem;
+    color: var(--color-accent);
     cursor: pointer;
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    z-index: 1002;
 }
 
 .navbar-logo {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 10px;
+    justify-content: flex-start;
+    padding: 6px 0;
+    position: relative;
+    z-index: 1003;
 }
 
 .logo-image {
-    height: 60px;
+    height: 56px;
     width: auto;
     object-fit: contain;
-    transition: transform 0.3s ease;
+    transition: transform 160ms ease;
 }
 
 .logo-image:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .side-menu {
     position: fixed;
-    left: -250px;
+    left: -260px; /* fully hidden */
     top: 0;
     height: 100vh;
-    width: 250px;
-    background: rgba(147, 177, 146, 1);
-    transition: all 0.3s ease-in-out;
-    z-index: 998;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    width: 260px;
+    background: linear-gradient(180deg, var(--color-primary), var(--color-muted));
+    transition: left 220ms cubic-bezier(.2,.9,.2,1);
+    z-index: 1001;
+    box-shadow: 2px 0 14px rgba(34,34,34,0.12);
+    overflow-y: auto; /* allow scrolling on small screens */
+    padding: 8px 0;
 }
 
-.side-menu.active {
-    left: 0;
-    transition: all 0.3s ease-in-out;
-}
+.side-menu.active { left: 0; }
 
 .nav-menu {
     display: flex;
     flex-direction: column;
     list-style: none;
-    padding: 100px 0 0 0;
+    height: 100%;
+    padding: 40px 0 0 0; /* reduced top padding so items sit higher */
     margin: 0;
+    justify-content: flex-start; /* keep items top-aligned by default */
+    gap: 1.25rem;
+}
+
+/* On tall viewports center the menu vertically for a balanced look */
+@media (min-height: 700px) {
+    .nav-menu { padding: 0; justify-content: center; }
 }
 
 .nav-item {
-    margin: 1rem 0;
-    padding: 0 2rem;
-    transition: transform 0.3s ease;
+    margin: 0;
+    padding: 0 1rem; /* small horizontal gutter */
+    transition: transform 160ms ease;
 }
 
 .nav-item:hover {
-    transform: translateX(10px);
+    transform: translateX(6px);
 }
 
 .nav-links {
-    color: #e6d5b8;
+    color: var(--color-accent);
     text-decoration: none;
-    font-size: 1.2rem;
-    font-family: 'Playfair Display', serif;
-    transition: all 0.3s ease;
+    font-size: 1.05rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    transition: color 160ms ease, transform 160ms ease;
     display: block;
-    padding: 0.5rem 0;
+    padding: .8rem 0; /* slightly larger touch area */
+    padding-left: .9rem; /* inner gutter from left edge */
 }
 
 .nav-links:hover {
-    color: #f5e6d3;
+    color: #fff; transform: translateX(4px);
 }
 
 @media screen and (max-width: 960px) {
@@ -107,4 +120,30 @@
     .navbar-container {
         padding: 0 20px;
     }
+    .side-menu { width: 220px; left: -220px; }
+    .side-menu.active { left: 0; }
+}
+
+/* Desktop nav (hidden on small screens) */
+.nav-desktop {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        align-items: center;
+        margin-left: auto;
+}
+.nav-desktop .nav-item { margin: 0; }
+.nav-desktop .nav-links { color: #fff; padding: 8px 10px; }
+
+@media (max-width: 900px) {
+    .nav-desktop { display: none; }
+    .menu-icon { display: inline-flex; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); }
+}
+
+/* Overlay when drawer is open */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
 }

@@ -1,0 +1,124 @@
+/* Import fonts: Inter for UI, Playfair Display for headings */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+:root {
+	--color-primary: #93b192; /* green base used in site */
+	--color-accent: #e6d5b8;  /* warm cream */
+	--color-muted: #7a9479;
+	--bg: #ffffff;
+	--text: #222222;
+	--muted-text: #555555;
+	--radius: 10px;
+	--container: 1200px;
+	--shadow-sm: 0 6px 18px rgba(34,34,34,0.08);
+	--shadow-md: 0 12px 30px rgba(34,34,34,0.08);
+	--font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	--font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+/* Reset / sensible defaults */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html,body,#root { height: 100%; }
+body {
+	margin: 0;
+	font-family: var(--font-sans);
+	color: var(--text);
+	background-color: var(--bg);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	line-height: 1.55;
+}
+
+/* Layout helpers */
+.container {
+	max-width: var(--container);
+	margin: 0 auto;
+	padding: 0 1rem;
+}
+
+/* Headings use the display serif for a tasteful, scrapbook-y accent */
+h1,h2,h3,h4 { font-family: var(--font-heading); margin: 0 0 0.6rem 0; color: var(--text); }
+h1 { font-size: clamp(1.6rem, 2.6rem + 1vw, 3.5rem); line-height: 1.05; }
+h2 { font-size: clamp(1.25rem, 1.6rem + 1vw, 2.5rem); }
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 1rem 0; color: var(--muted-text); }
+
+/* Buttons — unified, subtle shadows and gentle hover */
+.btn,
+button,
+.cta-button,
+.download-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0.65rem 1.1rem;
+	font-size: 1rem;
+	border-radius: var(--radius);
+	border: none;
+	cursor: pointer;
+	transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+	box-shadow: var(--shadow-sm);
+	background: var(--color-accent);
+	color: var(--text);
+	font-weight: 600;
+}
+
+.btn:hover,
+button:hover,
+.cta-button:hover,
+.download-button:hover {
+	transform: translateY(-3px);
+	box-shadow: var(--shadow-md);
+}
+
+.btn--primary { background: var(--color-primary); color: #fff; }
+.btn--ghost { background: transparent; color: var(--color-primary); box-shadow: none; border: 1px solid rgba(0,0,0,0.06); }
+
+/* Forms — smoother inputs */
+input[type="text"], input[type="email"], textarea, .field {
+	font-family: inherit;
+	padding: 0.7rem 0.9rem;
+	border-radius: 8px;
+	border: 1px solid #e6e6e6;
+	background: #fff;
+	color: var(--text);
+	width: 100%;
+	transition: box-shadow 160ms ease, border-color 160ms ease;
+}
+
+input:focus, textarea:focus, .field:focus {
+	outline: none;
+	border-color: var(--color-primary);
+	box-shadow: 0 6px 20px rgba(147,177,146,0.08);
+}
+
+/* Links */
+a { color: var(--color-primary); text-decoration: none; transition: color 150ms ease; }
+a:hover { color: var(--muted-text); }
+
+/* Utility spacing */
+.spacer { height: 1rem; }
+
+/* Make images feel crisp and consistent */
+img { display: block; max-width: 100%; height: auto; }
+
+/* Small responsive tweak to make cards and grids breathe more */
+.featured-item, .document-card, .color-box, .photo-box {
+	border-radius: 10px;
+}
+
+/* Improve contrast slightly for site areas that used muted text colors */
+.hero-section h1, .featured-section h2, .about-content h2, .heading h2 { color: #222; }
+
+/* Accessibility: focus-visible for keyboard users */
+:focus-visible { outline: 3px solid rgba(147,177,146,0.25); outline-offset: 3px; }
+
+/* Small responsive base */
+@media (max-width: 640px) {
+	h1 { font-size: 2rem; }
+	.btn, button { width: 100%; }
+}
