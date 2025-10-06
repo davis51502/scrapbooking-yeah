@@ -4,7 +4,7 @@ import './services.css';
 const Services = () => {
   const documents = [
     {
-      name: 'Emblems 2009',
+      name: 'Emblems',
       path: '/gallery/Emblems_2009.pdf',
       description: 'Browse our collection of emblems'
     },
